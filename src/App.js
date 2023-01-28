@@ -1,8 +1,11 @@
 import React from 'react';
+import Header from './Components/Layout/Header';
 
 const App =()=>{
   return (
-    <h1>React to learn</h1>
+    <React.Fragment>
+      <Header></Header>
+    </React.Fragment>
   )
 }
 
