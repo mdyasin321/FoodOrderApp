@@ -6,7 +6,7 @@ import classes from './Modal.module.css';
 const Backdrop=(props)=>{
     return(
 
-        <div className={classes.backdrop} ></div>
+        <div className={classes.backdrop}  onClick={props.onClick}></div>
 
     )
 }//this is the actual modal which will contain the details
@@ -22,8 +22,8 @@ const ModalDescription=(props)=>{
 const Modal=(props)=>{
     return (
         <React.Fragment>
-        {ReactDOM.createPortal(<Backdrop />, document.getElementById('backdrop-root'))}
-        {ReactDOM.createPortal(<ModalDescription>{props.children}</ModalDescription>, document.getElementById('modaloverlay-root'))}
+        {ReactDOM.createPortal(<Backdrop onClick={props.onPress} />, document.getElementById('backdrop-root'))}
+        {ReactDOM.createPortal(<ModalDescription  >{props.children}</ModalDescription>, document.getElementById('modaloverlay-root'))}
     </React.Fragment>
     )
 }
