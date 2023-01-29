@@ -31,14 +31,15 @@ const DUMMY_MEALS = [
     },
   ];
 
-  const AvailaibleMeals =()=>{
+  const AvailaibleMeals =(props)=>{
    let meals= DUMMY_MEALS.map((element)=>{
         return (
             <MealItem key={element.id}
                       id={element.id}
                       name={element.name}
                       description={element.description}
-                      price={element.price}></MealItem>
+                      price={element.price}
+                      pass2={props.pass1}></MealItem>
         )
     })
 

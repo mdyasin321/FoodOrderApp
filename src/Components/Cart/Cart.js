@@ -8,6 +8,7 @@ const Cart =(props)=>{
            
             <div className={classes.total}>
                 <span>Total Amount</span>
+                <span>{props.amountPresent}</span>
                 <span>7673</span>
             </div>
             <div className={classes.actions}>

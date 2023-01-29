@@ -15,7 +15,7 @@ const MealItem=(props)=>{
                 <div className={classes.price}>{price}</div>
               </div>
               <div>
-                <MealItemForm id={props.id}></MealItemForm>
+                <MealItemForm id={props.id} pass3={props.pass2}></MealItemForm>
               </div>
             </div>
             
