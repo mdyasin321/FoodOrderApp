@@ -3,12 +3,12 @@ import mealsImage from '../../Assets/meals.jpg';
 import classes from './Header.module.css';
 import HeaderCartButton from './HeaderCartButton';
 
-const Header =()=>{
+const Header =(props)=>{
     return (
             <React.Fragment>
                 <header className={classes.header}>
                     <h1>React Meals</h1>
-                    <HeaderCartButton></HeaderCartButton>
+                    <HeaderCartButton onPress={props.onShowCart}></HeaderCartButton>
                 </header>
                 {/* here the classes.main-header syntax is wrong because the class name should only contains number or alphabets and no dash or 
                 underslash. But still you want to use dash then you have to write like classes['main-header'] as written below */}
