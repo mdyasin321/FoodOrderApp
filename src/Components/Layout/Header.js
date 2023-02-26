@@ -8,7 +8,7 @@ const Header =(props)=>{
             <React.Fragment>
                 <header className={classes.header}>
                     <h1>React Meals</h1>
-                    <HeaderCartButton onPress={props.onShowCart}></HeaderCartButton>
+                    <HeaderCartButton cartItems={props.itemsInCart} onPress={props.onShowCart}></HeaderCartButton>
                 </header>
                 {/* here the classes.main-header syntax is wrong because the class name should only contains number or alphabets and no dash or 
                 underslash. But still you want to use dash then you have to write like classes['main-header'] as written below */}
