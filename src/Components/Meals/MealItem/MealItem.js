@@ -5,6 +5,20 @@ import MealItemForm from '../MealItemForm/MealItemForm';
 
 const MealItem=(props)=>{
 
+  const addingItemstoCart=(amt)=>{
+
+    const item ={
+      id:props.id,
+      name:props.name,
+      price:props.price,
+      amount:amt
+    }
+
+    props.handlerCart(item);
+   
+
+  }
+
     let price=`$${props.price.toFixed(2)}`;
     return (
         <li>
@@ -15,7 +29,7 @@ const MealItem=(props)=>{
                 <div className={classes.price}>{price}</div>
               </div>
               <div>
-                <MealItemForm id={props.id}></MealItemForm>
+                <MealItemForm id={props.id} amtpassing={addingItemstoCart}></MealItemForm>
               </div>
             </div>
             
