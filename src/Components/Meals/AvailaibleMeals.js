@@ -39,7 +39,7 @@ const DUMMY_MEALS = [
                       name={element.name}
                       description={element.description}
                       price={element.price}
-                      handlerCart={props.cartHandler}></MealItem>
+                     ></MealItem>
         )
     })
 

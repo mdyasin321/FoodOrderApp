@@ -1,12 +1,14 @@
-import React from 'react';
+import React ,{useContext} from 'react';
 import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
+import CartContext from '../../Store/Cart-Context';
 
 const Cart =(props)=>{
-    const totalAmt=`$${props.amountInTotal}`;
-    console.log(props.cartItemsAdded );
-    const items=props.cartItemsAdded.map((element)=>{
+    const ctx= useContext(CartContext);
+    const totalAmt=`$${ctx.totalPrice.toFixed(2)}`;
+    
+    const items=ctx.cartItems.map((element)=>{
         return (
             <CartItem key={element.key}  name={element.name} amount={element.amount} price={element.price}></CartItem>
         )
