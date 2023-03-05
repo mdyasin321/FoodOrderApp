@@ -10,16 +10,78 @@ const defaultCartState={
   
   const cartReducer=(prevState,action)=>{
        if(action.type==='AddItem'){
-       const updatedItem=[action.item,...prevState.items];
-                     //OR
-    //  const updatedItem  =prevState.items.concat(action.item);         
-        const updatedAmount=(action.item.price*action.item.amount) + prevState.totalAmount;
+       const updatedAmount=(action.item.price*action.item.amount) + prevState.totalAmount;
+     // const updatedItem=[action.item,...prevState.items];
+
+     let updatedItem;
+
+      let existingItemIndex= prevState.items.findIndex((element)=>{
+        return element.id===action.item.id
+      })
+      let existingItem=prevState.items[existingItemIndex];
+      let itemsArray=[...prevState.items];
+
+      if(existingItem!=null){
+  
+        itemsArray[existingItemIndex]={
+          ...existingItem,
+          amount:existingItem.amount+action.item.amount//this will override the amount value for this particular item
+     
+
+        }
+        updatedItem=itemsArray;
+
+      }
+      else{
+        updatedItem=[action.item,...prevState.items];
+                          //OR
+        // updatedItem  =prevState.items.concat(action.item);  
+      }
+
+      return {
+        items:updatedItem,
+        totalAmount:updatedAmount
+      
+      }
+          
+   
+     
+       }
+       //Remove Item
+       if(action.type==='RemoveItem'){
+        let updatedAmount;
+        let existingItemIndex= prevState.items.findIndex((element)=>{
+          return element.id===action.id
+        })
+        let existingItem=prevState.items[existingItemIndex];
+
+        let updatedItem=[...prevState.items];
+        updatedAmount= prevState.totalAmount-existingItem.price;
+
+        if(existingItem.amount>1){
+        updatedItem[existingItemIndex]={
+          ...existingItem,
+          amount:existingItem.amount-1
+        }
+       
+      }
+      else if(existingItem.amount===1){
+        updatedItem.splice(existingItemIndex,1);
+       
+      }
+
+    
+
         return {
           items:updatedItem,
           totalAmount:updatedAmount
-         
+        
         }
-       };
+
+       }
+
+      
+
        return defaultCartState;
   };
   
@@ -44,10 +106,20 @@ const CartProvider=(props)=>{
         dispatchedCartAction({type:'AddItem', item:item});                              
        }
 
+      //  const deleteCartItemHandler=(id)=>{
+      //    let deletingItemIndex=
+      //  }
+
+
+      const deleteCartItemsHandler=(id)=>{
+        dispatchedCartAction({type:'RemoveItem', id:id}); 
+      }
+
        const dummyContextValue={
         cartItems:cartState.items,
         totalPrice:cartState.totalAmount,
-        addCartItemsHandler:addCartItemsHandler
+        addCartItemsHandler:addCartItemsHandler,
+        deleteCartItem:deleteCartItemsHandler
        }
 
 
